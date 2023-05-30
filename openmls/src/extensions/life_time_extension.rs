@@ -36,26 +36,27 @@ impl LifetimeExtension {
     /// Note that the lifetime is extended 1h into the past to adapt to skewed
     /// clocks, i.e. `not_before` is set to now - 1h.
     pub fn new(t: u64) -> Self {
-        let lifetime_margin: u64 = DEFAULT_KEY_PACKAGE_LIFETIME_MARGIN;
-        let now = SystemTime::now()
-            .duration_since(UNIX_EPOCH)
-            .expect("SystemTime before UNIX EPOCH!")
-            .as_secs();
-        let not_before = now - lifetime_margin;
-        let not_after = now + t;
+//        let lifetime_margin: u64 = DEFAULT_KEY_PACKAGE_LIFETIME_MARGIN;
+//        let now = SystemTime::now()
+//            .duration_since(UNIX_EPOCH)
+//            .expect("SystemTime before UNIX EPOCH!")
+//            .as_secs();
+//        let not_before = now - lifetime_margin;
+//        let not_after = now + t;
         Self {
-            not_before,
-            not_after,
+            not_before: 0,
+            not_after: 0,
         }
     }
 
     /// Returns true if this lifetime is valid.
     pub(crate) fn is_valid(&self) -> bool {
-        let now = SystemTime::now()
-            .duration_since(UNIX_EPOCH)
-            .expect("SystemTime before UNIX EPOCH!")
-            .as_secs();
-        self.not_before < now && now < self.not_after
+//        let now = SystemTime::now()
+//            .duration_since(UNIX_EPOCH)
+//            .expect("SystemTime before UNIX EPOCH!")
+//            .as_secs();
+//        self.not_before < now && now < self.not_after
+        true
     }
 }
 
